@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">    
+    <h:head>
+        <title>Merlion Logistic</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+    <style>
+        html, body{    height: 99%;
+                       background: #ebf1f6; /* Old browsers */
+                       background: -moz-linear-gradient(top, #ebf1f6 0%, #abd3ee 69%, #89c3eb 100%); /* FF3.6+ */
+                       background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ebf1f6), color-stop(69%,#abd3ee), color-stop(100%,#89c3eb)); /* Chrome,Safari4+ */
+                       background: -webkit-linear-gradient(top, #ebf1f6 0%,#abd3ee 69%,#89c3eb 100%); /* Chrome10+,Safari5.1+ */
+                       background: -o-linear-gradient(top, #ebf1f6 0%,#abd3ee 69%,#89c3eb 100%); /* Opera 11.10+ */
+                       background: -ms-linear-gradient(top, #ebf1f6 0%,#abd3ee 69%,#89c3eb 100%); /* IE10+ */
+                       background: linear-gradient(to bottom, #ebf1f6 0%,#abd3ee 69%,#89c3eb 100%); /* W3C */
+                       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf1f6', endColorstr='#89c3eb',GradientType=0 ); /* IE6-9 */        }
+        #container {
+            height: 100%;
+            width: 80%;
+            background-color: white; 
+        }
+        .panelGridCenter {
+            margin: 0 auto;
+        }
+    </style>
+    <h:body>
+        <table id="container" align="center">
+            <tr>
+                <td>
+                    <h:form>
+                        <p:panelGrid id="panel" columns="2" styleClass="panelGridCenter">
+                            <f:facet name="header">
+                                Login
+                            </f:facet>
+                            <h:outputLabel for="firstname" value="Firstname: *" />
+                            <p:inputText id="firstname" value="#{loginManagedBean.username}" label="Firstname" />
+                            <h:outputLabel for="surname" value="Surname: *" />
+                            <p:inputText id="surname" value="#{loginManagedBean.password}" label="Surname"/>
+                            <f:facet name="footer">
+                                <p:commandButton type="button" value="Login" update="panel"  actionListener="#{loginManagedBean.save}" />
+                            </f:facet>
+                        </p:panelGrid>
+                    </h:form>
+                </td>
+            </tr>
+        </table>
+    </h:body>
+</html>
+
