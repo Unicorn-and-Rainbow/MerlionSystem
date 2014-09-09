@@ -6,42 +6,78 @@
 
 package CRM;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+/**
+ *
+ * @author yuna
+ */
 @Entity
 public class EntityWarehouseService extends AbstractService {
-    private String warehouseServiceLocation;
-    private String warehouseServiceUnit;
-    
-    
+    private String serviceLocation;
+    private double serviceMinUnit;
+    private double serviceMaxUnit;
+    private double servicePerUnitPerDayCost;
+    private double servicePerUnitPerDayPrice;
+
     public EntityWarehouseService() {
-        this.setServiceID(System.nanoTime());
     }
 
-    public void createWarehouseService(String serviceName, String serviceDescription, 
-            String serviceType, String warehouseServiceLocation, 
-            String warehouseServiceUnit) {
-        this.setServiceName(serviceName);
-        this.setServiceDescription(serviceDescription);
-        this.setServiceType(serviceType);
-        this.warehouseServiceLocation = warehouseServiceLocation;
-        this.warehouseServiceUnit = warehouseServiceUnit;
+    public EntityWarehouseService(Long serviceID, String serviceName, String serviceType, String serviceDescription, String serviceRemark,String serviceLocation, double serviceMinUnit, double serviceMaxUnit, double servicePerUnitPerDayCost, double servicePerUnitPerDayPrice) {
+        this.setServiceID (serviceID);
+        this.setServiceName (serviceName);
+        this.setServiceType (serviceType);
+        this.setServiceDescription (serviceDescription);
+        this.setServiceRemark (serviceRemark);
+        this.serviceLocation = serviceLocation;
+        this.serviceMinUnit = serviceMinUnit;
+        this.serviceMaxUnit = serviceMaxUnit;
+        this.servicePerUnitPerDayCost = servicePerUnitPerDayCost;
+        this.servicePerUnitPerDayPrice = servicePerUnitPerDayPrice;
     }
 
-    public String getWarehouseServiceLocation() {
-        return warehouseServiceLocation;
+    public String getServiceLocation() {
+        return serviceLocation;
     }
 
-    public String getWarehouseServiceUnit() {
-        return warehouseServiceUnit;
+    public void setServiceLocation(String serviceLocation) {
+        this.serviceLocation = serviceLocation;
     }
 
-    public void setWarehouseServiceLocation(String warehouseServiceLocation) {
-        this.warehouseServiceLocation = warehouseServiceLocation;
+    public double getServiceMinUnit() {
+        return serviceMinUnit;
     }
 
-    public void setWarehouseServiceUnit(String warehouseServiceUnit) {
-        this.warehouseServiceUnit = warehouseServiceUnit;
+    public void setServiceMinUnit(double serviceMinUnit) {
+        this.serviceMinUnit = serviceMinUnit;
     }
-    
+
+    public double getServiceMaxUnit() {
+        return serviceMaxUnit;
+    }
+
+    public void setServiceMaxUnit(double serviceMaxUnit) {
+        this.serviceMaxUnit = serviceMaxUnit;
+    }
+
+    public double getServicePerUnitPerDayCost() {
+        return servicePerUnitPerDayCost;
+    }
+
+    public void setServicePerUnitPerDayCost(double servicePerUnitPerDayCost) {
+        this.servicePerUnitPerDayCost = servicePerUnitPerDayCost;
+    }
+
+    public double getServicePerUnitPerDayPrice() {
+        return servicePerUnitPerDayPrice;
+    }
+
+    public void setServicePerUnitPerDayPrice(double servicePerUnitPerDayPrice) {
+        this.servicePerUnitPerDayPrice = servicePerUnitPerDayPrice;
+    }
+        
 }

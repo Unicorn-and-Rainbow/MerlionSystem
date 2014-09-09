@@ -6,108 +6,143 @@
 
 package CRM;
 
-import TMS.EntityTransportationOrder;
-import WMS.EntityWarehouseOrder;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
+import javax.persistence.OneToOne;
 
 /**
  *
- * @author phuongtung
+ * @author yuna
  */
 @Entity
 public class EntityServiceOrder implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    private Long orderID;
-    private String orderType;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date orderDate;
-    private String orderDescription;
-    private String orderStatus;
-    @OneToMany(mappedBy="serviceOrder")
-    private Set<EntityTransportationOrder> transportationOrder = new HashSet<>();
-    @OneToMany(mappedBy="serviceOrder")
-    private Set<EntityWarehouseOrder> warehouseOrder = new HashSet<>();
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long serviceOrderID;
 
+    @OneToOne(mappedBy="serviceOrder")
+    private EntityServiceContract serviceContract;
+    @ManyToOne
+    private EntityCompany company;
+    @OneToMany(mappedBy="serviceOrder")
+    private Set<AbstractServiceEntry> abstractServiceEntry = new HashSet<AbstractServiceEntry>();
     
+    private Date serviceOrderDate;
+    private Long serviceOrderCreatorHR;
+    private String serviceOrderReference;
+    private String serviceOrderStatus;
+
     public EntityServiceOrder() {
-       this.setOrderID(System.nanoTime());
     }
 
-    public void createServiceOrder(String orderType, Date orderDate, 
-            String orderDescription, String orderStatus) {
-        this.orderType = orderType;
-        this.orderDate = orderDate;
-        this.orderDescription = orderDescription;
-        this.orderStatus = orderStatus;
+    public EntityServiceOrder(Long serviceOrderID, EntityServiceContract serviceContract, EntityCompany company, Date serviceOrderDate, Long serviceOrderCreatorHR, String serviceOrderReference, String serviceOrderStatus) {
+        this.serviceOrderID = serviceOrderID;
+        this.serviceContract = serviceContract;
+        this.company = company;
+        this.serviceOrderDate = serviceOrderDate;
+        this.serviceOrderCreatorHR = serviceOrderCreatorHR;
+        this.serviceOrderReference = serviceOrderReference;
+        this.serviceOrderStatus = serviceOrderStatus;
     }
     
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    
+    public Long getServiceOrderID() {
+        return serviceOrderID;
     }
 
-    public Long getOrderID() {
-        return orderID;
+    public void setServiceOrderID(Long serviceOrderID) {
+        this.serviceOrderID = serviceOrderID;
     }
 
-    public String getOrderType() {
-        return orderType;
+    public Date getServiceOrderDate() {
+        return serviceOrderDate;
     }
 
-    public Date getOrderDate() {
-        return orderDate;
+    public void setServiceOrderDate(Date serviceOrderDate) {
+        this.serviceOrderDate = serviceOrderDate;
     }
 
-    public String getOrderDescription() {
-        return orderDescription;
+    public Long getServiceOrderCreatorHR() {
+        return serviceOrderCreatorHR;
     }
 
-    public String getOrderStatus() {
-        return orderStatus;
+    public void setServiceOrderCreatorHR(Long serviceOrderCreatorHR) {
+        this.serviceOrderCreatorHR = serviceOrderCreatorHR;
     }
 
-    public void setOrderID(Long orderID) {
-        this.orderID = orderID;
+    public String getServiceOrderReference() {
+        return serviceOrderReference;
     }
 
-    public void setOrderType(String orderType) {
-        this.orderType = orderType;
+    public void setServiceOrderReference(String serviceOrderReference) {
+        this.serviceOrderReference = serviceOrderReference;
     }
 
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
+    public String getServiceOrderStatus() {
+        return serviceOrderStatus;
     }
 
-    public void setOrderDescription(String orderDescription) {
-        this.orderDescription = orderDescription;
+    public void setServiceOrderStatus(String serviceOrderStatus) {
+        this.serviceOrderStatus = serviceOrderStatus;
     }
 
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
+    public EntityServiceContract getServiceContract() {
+        return serviceContract;
     }
 
-    public Set<EntityTransportationOrder> getTransportationOrder() {
-        return transportationOrder;
+    public void setServiceContract(EntityServiceContract serviceContract) {
+        this.serviceContract = serviceContract;
     }
 
-    public void setTransportationOrder(Set<EntityTransportationOrder> transportationOrder) {
-        this.transportationOrder = transportationOrder;
+    public EntityCompany getCompany() {
+        return company;
     }
 
-    public Set<EntityWarehouseOrder> getWarehouseOrder() {
-        return warehouseOrder;
+    public void setCompany(EntityCompany company) {
+        this.company = company;
     }
 
-    public void setWarehouseOrder(Set<EntityWarehouseOrder> warehouseOrder) {
-        this.warehouseOrder = warehouseOrder;
+    public Set<AbstractServiceEntry> getAbstractServiceEntry() {
+        return abstractServiceEntry;
+    }
+
+    public void setAbstractServiceEntry(Set<AbstractServiceEntry> abstractServiceEntry) {
+        this.abstractServiceEntry = abstractServiceEntry;
+    }
+
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (serviceOrderID != null ? serviceOrderID.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the serviceOrderID fields are not set
+        if (!(object instanceof EntityServiceOrder)) {
+            return false;
+        }
+        EntityServiceOrder other = (EntityServiceOrder) object;
+        if ((this.serviceOrderID == null && other.serviceOrderID != null) || (this.serviceOrderID != null && !this.serviceOrderID.equals(other.serviceOrderID))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "CRM.EntityServiceOrder[ id=" + serviceOrderID + " ]";
     }
     
 }
