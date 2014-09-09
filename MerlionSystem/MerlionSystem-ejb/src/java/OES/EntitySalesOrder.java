@@ -8,6 +8,7 @@ package OES;
 
 import CommonInfrastructure.EntityCompany;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -31,11 +33,27 @@ public class EntitySalesOrder implements Serializable {
     private Set<EntityLineItem> lineItem = new HashSet<>();
     @OneToOne
     private EntityPurchaseOrder purchaseOrder;
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date salesOrderDate;
+    private long purchasePartyID;
+    private String purchasePartyName;
+    private String billingAddress;
+    private String shippingTerm;
+    private String paymentTerm;
+    private String shippingPriorityOption;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date requestedDeliveryDate;
+    private double grandTotal;
+    private String salesOrderStatus;
 
     public EntitySalesOrder() {
         this.setSalesOrderID(System.nanoTime());
     }
-
+    
+    public void createEntitySalesOrder() {
+        
+    }
     public Long getSalesOrderID() {
         return salesOrderID;
     }

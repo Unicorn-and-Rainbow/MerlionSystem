@@ -32,6 +32,14 @@ public class EntityProductInvoice implements Serializable {
     private EntityPurchaseOrder purchaseOrder;
     @OneToOne
     private EntityPaymentReceipt paymentReceipt;
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date invoiceIssueDate;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date invoiceDueDate;
+    private String billingAddress;
+    private double grandTotal;
+    private String invoiceStatus;
 
     public EntityProductInvoice() {
         this.setInvoiceID(System.nanoTime());

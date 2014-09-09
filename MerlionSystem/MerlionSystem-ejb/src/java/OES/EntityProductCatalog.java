@@ -8,12 +8,14 @@ package OES;
 
 import CommonInfrastructure.EntityCompany;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -28,6 +30,14 @@ public class EntityProductCatalog implements Serializable {
     private Set<EntityProduct> product = new HashSet<>();
     @ManyToOne
     private EntityCompany company;
+    private Boolean canBePurchased;
+    private Boolean canBeManufactured;
+    private Boolean usedForManufacturing;
+    private String productCatalogDescription;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date effectiveDate;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date endDate;
     
     public EntityProductCatalog() {
         this.setProductCatalogID(System.nanoTime());

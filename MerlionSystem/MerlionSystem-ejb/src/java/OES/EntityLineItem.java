@@ -42,17 +42,7 @@ public class EntityLineItem implements Serializable {
     private EntityBackOrder backOrder;
     
     
-    private long productID;
-    private String uOM;
-    private String warehouseAddress;
-    private String shipToAddress;
-    private double price;
-    private String lineItemStatus;
-    private long supplierID;
-    private String shippingType;
-    private String replenishmentMethod;
-    private double minimumOrderQty;
-    private int leadTime;
+    
     
     public EntityLineItem() {
         this.setLineItemID(System.nanoTime());
@@ -130,72 +120,4 @@ public class EntityLineItem implements Serializable {
         this.backOrder = backOrder;
     }
     
-    
-    
-    public long getProductID() {
-		return productID;
-	}
-	public void setProductID(long productID) {
-		this.productID = productID;
-	}
-	public String getuOM() {
-		return uOM;
-	}
-	public void setuOM(String uOM) {
-		this.uOM = uOM;
-	}
-	public String getWarehouseAddress() {
-		return warehouseAddress;
-	}
-	public void setWarehouseAddress(String warehouseAddress) {
-		this.warehouseAddress = warehouseAddress;
-	}
-	public String getShipToAddress() {
-		return shipToAddress;
-	}
-	public void setShipToAddress(String shipToAddress) {
-		this.shipToAddress = shipToAddress;
-	}
-	public double getPrice() {
-		return price;
-	}
-	public void setPrice(double price) {
-		this.price = price;
-	}
-	public String getLineItemStatus() {
-		return lineItemStatus;
-	}
-	public void setLineItemStatus(String lineItemStatus) {
-		this.lineItemStatus = lineItemStatus;
-	}
-	public long getSupplierID() {
-		return supplierID;
-	}
-	public void setSupplierID(long supplierID) {
-		this.supplierID = supplierID;
-	}
-	public String getShippingType() {
-		return shippingType;
-	}
-	public void setShippingType(String shippingType) {
-		this.shippingType = shippingType;
-	}
-	public String getReplenishmentMethod() {
-		return replenishmentMethod;
-	}
-	public void setReplenishmentMethod(String replenishmentMethod) {
-		this.replenishmentMethod = replenishmentMethod;
-	}
-	public double getMinimumOrderQty() {
-		return minimumOrderQty;
-	}
-	public void setMinimumOrderQty(double minimumOrderQty) {
-		this.minimumOrderQty = minimumOrderQty;
-	}
-	public int getLeadTime() {
-		return leadTime;
-	}
-	public void setLeadTime(int leadTime) {
-		this.leadTime = leadTime;
-	}
 }

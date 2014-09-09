@@ -7,9 +7,11 @@
 package OES;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -22,6 +24,10 @@ public class EntityPaymentReceipt implements Serializable {
     private Long receiptID;
     @OneToOne(mappedBy="paymentReceipt")
     private EntityProductInvoice productInvoice;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date paymentDate;
+    private double grandTotal;
+    
 
     public EntityPaymentReceipt() {
         this.setReceiptID(System.nanoTime());

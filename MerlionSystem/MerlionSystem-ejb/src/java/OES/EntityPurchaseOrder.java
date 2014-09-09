@@ -8,6 +8,7 @@ package OES;
 
 import CommonInfrastructure.EntityCompany;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -35,17 +37,19 @@ public class EntityPurchaseOrder implements Serializable {
     private Set<EntityLineItem> lineItem = new HashSet<>();
     @ManyToMany(mappedBy="purchaseOrder")
     private Set<EntityCompany> company = new HashSet<>();
-
-    
-    private long purchaseOrder;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date purchaseOrderDate;
-    private String soldToParty;
-    private String paymentTerm;
-    private String shippingTerm;
-    private String shippingPriorityOption;
+    private long purchasePartyID;
+    private String purchasePartyName;
+    private long salesPartyID;
+    private String salesPartyName;
     private String billingAddress;
-    private double grandTotal;
+    private String shippingTerm;
+    private String paymentTerm;
+    private String shippingPriorityOption;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date requestedDeliveryDate;
+    private double grandTotal;
     private String purchaseOrderStatus;
 
     public EntityPurchaseOrder() {
@@ -91,67 +95,5 @@ public class EntityPurchaseOrder implements Serializable {
     public void setCompany(Set<EntityCompany> company) {
         this.company = company;
     }
-    
-    
-    public long getPurchaseOrder() {
-		return purchaseOrder;
-	}
-	public void setPurchaseOrder(long purchaseOrder) {
-		this.purchaseOrder = purchaseOrder;
-	}
-	public Date getPurchaseOrderDate() {
-		return purchaseOrderDate;
-	}
-	public void setPurchaseOrderDate(Date purchaseOrderDate) {
-		this.purchaseOrderDate = purchaseOrderDate;
-	}
-	public String getSoldToParty() {
-		return soldToParty;
-	}
-	public void setSoldToParty(String soldToParty) {
-		this.soldToParty = soldToParty;
-	}
-	public String getPaymentTerm() {
-		return paymentTerm;
-	}
-	public void setPaymentTerm(String paymentTerm) {
-		this.paymentTerm = paymentTerm;
-	}
-	public String getShippingTerm() {
-		return shippingTerm;
-	}
-	public void setShippingTerm(String shippingTerm) {
-		this.shippingTerm = shippingTerm;
-	}
-	public String getShippingPriorityOption() {
-		return shippingPriorityOption;
-	}
-	public void setShippingPriorityOption(String shippingPriorityOption) {
-		this.shippingPriorityOption = shippingPriorityOption;
-	}
-	public String getBillingAddress() {
-		return billingAddress;
-	}
-	public void setBillingAddress(String billingAddress) {
-		this.billingAddress = billingAddress;
-	}
-	public double getGrandTotal() {
-		return grandTotal;
-	}
-	public void setGrandTotal(double grandTotal) {
-		this.grandTotal = grandTotal;
-	}
-	public Date getRequestedDeliveryDate() {
-		return requestedDeliveryDate;
-	}
-	public void setRequestedDeliveryDate(Date requestedDeliveryDate) {
-		this.requestedDeliveryDate = requestedDeliveryDate;
-	}
-	public String getPurchaseOrderStatus() {
-		return purchaseOrderStatus;
-	}
-	public void setPurchaseOrderStatus(String purchaseOrderStatus) {
-		this.purchaseOrderStatus = purchaseOrderStatus;
-	}
 
 }
