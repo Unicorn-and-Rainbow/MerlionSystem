@@ -6,6 +6,8 @@
 
 package OES;
 
+import CRM.EntityTransportationServiceEntry;
+import CRM.EntityWarehouseServiceEntry;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;

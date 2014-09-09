@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package OES;
 
 import WMS.EntityLocationUnit;
@@ -23,19 +22,18 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class EntityInventory implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     private long inventoryID;
     @ManyToOne
     private EntityProduct product;
-    @OneToOne  
+    @OneToOne
     private EntityWarehouse warehouse;
-    @OneToMany(mappedBy="inventory")
+    @OneToMany(mappedBy = "inventory")
     private Set<EntityLocationUnit> locationUnit = new HashSet<>();
-    
-    private long inventoryID;
-    private String warehouseAddress;
 
+    private String warehouseAddress;
 
     public EntityInventory() {
         this.setInventoryID(System.nanoTime());
@@ -72,20 +70,13 @@ public class EntityInventory implements Serializable {
     public void setLocationUnit(Set<EntityLocationUnit> locationUnit) {
         this.locationUnit = locationUnit;
     }
-    
-    
-    public long getInventoryID() {
-		return inventoryID;
-	}
-	public void setInventoryID(long inventoryID) {
-		this.inventoryID = inventoryID;
-	}
-	public String getWarehouseAddress() {
-		return warehouseAddress;
-	}
-	public void setWarehouseAddress(String warehouseAddress) {
-		this.warehouseAddress = warehouseAddress;
-	}
 
+    public String getWarehouseAddress() {
+        return warehouseAddress;
+    }
+
+    public void setWarehouseAddress(String warehouseAddress) {
+        this.warehouseAddress = warehouseAddress;
+    }
 
 }

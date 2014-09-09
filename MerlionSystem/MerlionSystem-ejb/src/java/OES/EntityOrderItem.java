@@ -6,7 +6,9 @@
 
 package OES;
 
+import TMS.EntityTransportationOrder;
 import WMS.EntityInventoryItem;
+import WMS.EntityWarehouseOrder;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;

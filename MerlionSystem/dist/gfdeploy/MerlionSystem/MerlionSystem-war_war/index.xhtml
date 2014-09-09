@@ -41,7 +41,8 @@
                             <h:outputLabel for="surname" value="Surname: *" />
                             <p:inputText id="surname" value="#{loginManagedBean.password}" label="Surname"/>
                             <f:facet name="footer">
-                                <p:commandButton type="button" value="Login" update="panel"  actionListener="#{loginManagedBean.save}" />
+                                <p:commandButton ajax="false" type="submit" value="Login" update="panel"  actionListener="#{loginManagedBean.save}" />
+                                <p:commandButton ajax="false" type="submit" value="Register New User" action="#{loginManagedBean.register}" />
                             </f:facet>
                         </p:panelGrid>
                     </h:form>

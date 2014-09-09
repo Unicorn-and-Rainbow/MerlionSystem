@@ -6,7 +6,7 @@
 
 package TMS;
 
-import CRM.EntityTransportService;
+import CRM.EntityTransportationService;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -25,7 +25,7 @@ public class EntityTransportationEvent implements Serializable {
     @OneToOne
     private EntityTransportationAsset transportationAsset;
     @ManyToOne
-    private EntityTransportService transportationService = new EntityTransportService();
+    private EntityTransportationService transportationService;
 
     public EntityTransportationEvent() {
         this.setTransportationEventID(System.nanoTime());
@@ -47,11 +47,11 @@ public class EntityTransportationEvent implements Serializable {
         this.transportationAsset = transportationAsset;
     }
 
-    public EntityTransportService getTransportationService() {
+    public EntityTransportationService getTransportationService() {
         return transportationService;
     }
 
-    public void setTransportationService(EntityTransportService transportationService) {
+    public void setTransportationService(EntityTransportationService transportationService) {
         this.transportationService = transportationService;
     }
 

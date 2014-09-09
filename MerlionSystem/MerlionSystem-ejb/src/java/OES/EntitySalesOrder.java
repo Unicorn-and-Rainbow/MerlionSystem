@@ -86,4 +86,84 @@ public class EntitySalesOrder implements Serializable {
         this.purchaseOrder = purchaseOrder;
     }
 
+    public Date getSalesOrderDate() {
+        return salesOrderDate;
+    }
+
+    public void setSalesOrderDate(Date salesOrderDate) {
+        this.salesOrderDate = salesOrderDate;
+    }
+
+    public long getPurchasePartyID() {
+        return purchasePartyID;
+    }
+
+    public void setPurchasePartyID(long purchasePartyID) {
+        this.purchasePartyID = purchasePartyID;
+    }
+
+    public String getPurchasePartyName() {
+        return purchasePartyName;
+    }
+
+    public void setPurchasePartyName(String purchasePartyName) {
+        this.purchasePartyName = purchasePartyName;
+    }
+
+    public String getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(String billingAddress) {
+        this.billingAddress = billingAddress;
+    }
+
+    public String getShippingTerm() {
+        return shippingTerm;
+    }
+
+    public void setShippingTerm(String shippingTerm) {
+        this.shippingTerm = shippingTerm;
+    }
+
+    public String getPaymentTerm() {
+        return paymentTerm;
+    }
+
+    public void setPaymentTerm(String paymentTerm) {
+        this.paymentTerm = paymentTerm;
+    }
+
+    public String getShippingPriorityOption() {
+        return shippingPriorityOption;
+    }
+
+    public void setShippingPriorityOption(String shippingPriorityOption) {
+        this.shippingPriorityOption = shippingPriorityOption;
+    }
+
+    public Date getRequestedDeliveryDate() {
+        return requestedDeliveryDate;
+    }
+
+    public void setRequestedDeliveryDate(Date requestedDeliveryDate) {
+        this.requestedDeliveryDate = requestedDeliveryDate;
+    }
+
+    public double getGrandTotal() {
+        return grandTotal;
+    }
+
+    public void setGrandTotal(double grandTotal) {
+        this.grandTotal = grandTotal;
+    }
+
+    public String getSalesOrderStatus() {
+        return salesOrderStatus;
+    }
+
+    public void setSalesOrderStatus(String salesOrderStatus) {
+        this.salesOrderStatus = salesOrderStatus;
+    }
+
 }
