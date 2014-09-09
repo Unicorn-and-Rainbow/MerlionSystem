@@ -6,9 +6,9 @@
 
 package CommonInfrastructure;
 
-import CRM.EntityQuotation;
 import CRM.EntityServiceCatalog;
 import CRM.EntityServiceContract;
+import CRM.EntityServiceQuotation;
 import CRM.EntityServiceRequest;
 import GRNS.EntityAggregatedRequest;
 import GRNS.EntityServiceProvider;
@@ -53,7 +53,7 @@ public class EntityCompany implements Serializable {
     @OneToMany
     private Set<EntityServiceCatalog> catalog = new HashSet<>();
     @OneToMany
-    private Set<EntityQuotation> quotation = new HashSet<>();
+    private Set<EntityServiceQuotation> quotation = new HashSet<>();
     @OneToMany
     private Set<EntitySalesQuotation> salesQuotation = new HashSet<>();
     @OneToMany
@@ -181,11 +181,11 @@ public class EntityCompany implements Serializable {
         this.catalog = catalog;
     }
 
-    public Set<EntityQuotation> getQuotation() {
+    public Set<EntityServiceQuotation> getQuotation() {
         return quotation;
     }
 
-    public void setQuotation(Set<EntityQuotation> quotation) {
+    public void setQuotation(Set<EntityServiceQuotation> quotation) {
         this.quotation = quotation;
     }
 

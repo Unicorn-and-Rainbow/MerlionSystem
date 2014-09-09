@@ -8,6 +8,7 @@ package OES;
 
 import CommonInfrastructure.EntityCompany;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -38,6 +40,7 @@ public class EntityPurchaseOrder implements Serializable {
 
     
     private long purchaseOrder;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date purchaseOrderDate;
     private String soldToParty;
     private String paymentTerm;
@@ -45,6 +48,7 @@ public class EntityPurchaseOrder implements Serializable {
     private String shippingPriorityOption;
     private String billingAddress;
     private double grandTotal;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date requestedDeliveryDate;
     private String purchaseOrderStatus;
 
