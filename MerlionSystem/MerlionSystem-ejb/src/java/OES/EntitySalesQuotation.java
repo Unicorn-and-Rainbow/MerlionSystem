@@ -6,13 +6,15 @@
 
 package OES;
 
-import WMS.EntityRFQ;
+import CommonInfrastructure.EntityCompany;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
 
 /**
  *
@@ -23,22 +25,19 @@ public class EntitySalesQuotation implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     private Long salesQuotationID;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date salesQuotationIssueDate;
-    private Double salesQuotationGrandTotal;
-    @OneToOne(mappedBy = "salesQuotation")
-    private EntitySalesOrder salesOrder;
     @OneToOne(mappedBy = "salesQuotation")
     private EntityRFQ rfq;
+    @OneToOne(mappedBy = "salesQuotation")
+    private EntityPurchaseOrder purchaseOrder;
+    @ManyToMany(mappedBy = "salesQuotation")
+    private Set<EntityCompany> company = new HashSet<>();
+    @OneToMany(mappedBy="salesQuotation")
+    private Set<EntityLineItem> lineItem = new HashSet<>();
 
     public EntitySalesQuotation() {
-        this.salesOrder = new EntitySalesOrder();
+        this.setSalesQuotationID(System.nanoTime());
     }
 
-    public void createSalesQuotation(Date salesQuotationIssueDate, Double salesQuotationGrandTotal) {
-        this.salesQuotationIssueDate = salesQuotationIssueDate;
-        this.salesQuotationGrandTotal = salesQuotationGrandTotal;
-    }
     
     public Long getSalesQuotationID() {
         return salesQuotationID;
@@ -48,36 +47,36 @@ public class EntitySalesQuotation implements Serializable {
         this.salesQuotationID = salesQuotationID;
     }
 
-    public Date getSalesQuotationIssueDate() {
-        return salesQuotationIssueDate;
-    }
-
-    public void setSalesQuotationIssueDate(Date salesQuotationIssueDate) {
-        this.salesQuotationIssueDate = salesQuotationIssueDate;
-    }
-
-    public Double getSalesQuotationGrandTotal() {
-        return salesQuotationGrandTotal;
-    }
-
-    public void setSalesQuotationGrandTotal(Double salesQuotationGrandTotal) {
-        this.salesQuotationGrandTotal = salesQuotationGrandTotal;
-    }
-
-    public EntitySalesOrder getSalesOrder() {
-        return salesOrder;
-    }
-
-    public void setSalesOrder(EntitySalesOrder salesOrder) {
-        this.salesOrder = salesOrder;
-    }
-
     public EntityRFQ getRfq() {
         return rfq;
     }
 
     public void setRfq(EntityRFQ rfq) {
         this.rfq = rfq;
+    }
+
+    public EntityPurchaseOrder getPurchaseOrder() {
+        return purchaseOrder;
+    }
+
+    public void setPurchaseOrder(EntityPurchaseOrder purchaseOrder) {
+        this.purchaseOrder = purchaseOrder;
+    }
+
+    public Set<EntityCompany> getCompany() {
+        return company;
+    }
+
+    public void setCompany(Set<EntityCompany> company) {
+        this.company = company;
+    }
+
+    public Set<EntityLineItem> getLineItem() {
+        return lineItem;
+    }
+
+    public void setLineItem(Set<EntityLineItem> lineItem) {
+        this.lineItem = lineItem;
     }
 
     

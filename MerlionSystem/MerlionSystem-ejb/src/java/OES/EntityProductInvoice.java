@@ -6,10 +6,15 @@
 
 package OES;
 
+import CommonInfrastructure.EntityCompany;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -21,23 +26,17 @@ public class EntityProductInvoice implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     private Long invoiceID;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date invoiceDueDate;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date invoiceIssueDate;
-    private Double invoiceGrandTotal;
-    private String invoiceStatus;
+    @ManyToMany(mappedBy="productInvoice")
+    private Set<EntityCompany> company = new HashSet<>();
+    @OneToOne(mappedBy="productInvoice")
+    private EntityPurchaseOrder purchaseOrder;
+    @OneToOne
+    private EntityPaymentReceipt paymentReceipt;
 
     public EntityProductInvoice() {
         this.setInvoiceID(System.nanoTime());
     }
 
-    public void createInvoice(Date invoiceDueDate, Date invoiceIssueDate, Double invoiceGrandTotal, String invoiceStatus) {
-        this.invoiceDueDate = invoiceDueDate;
-        this.invoiceIssueDate = invoiceIssueDate;
-        this.invoiceGrandTotal = invoiceGrandTotal;
-        this.invoiceStatus = invoiceStatus;
-    }
     
     public Long getInvoiceID() {
         return invoiceID;
@@ -47,36 +46,28 @@ public class EntityProductInvoice implements Serializable {
         this.invoiceID = invoiceID;
     }
 
-    public Date getInvoiceDueDate() {
-        return invoiceDueDate;
+    public Set<EntityCompany> getCompany() {
+        return company;
     }
 
-    public void setInvoiceDueDate(Date invoiceDueDate) {
-        this.invoiceDueDate = invoiceDueDate;
+    public void setCompany(Set<EntityCompany> company) {
+        this.company = company;
     }
 
-    public Date getInvoiceIssueDate() {
-        return invoiceIssueDate;
+    public EntityPurchaseOrder getPurchaseOrder() {
+        return purchaseOrder;
     }
 
-    public void setInvoiceIssueDate(Date invoiceIssueDate) {
-        this.invoiceIssueDate = invoiceIssueDate;
+    public void setPurchaseOrder(EntityPurchaseOrder purchaseOrder) {
+        this.purchaseOrder = purchaseOrder;
     }
 
-    public Double getInvoiceGrandTotal() {
-        return invoiceGrandTotal;
+    public EntityPaymentReceipt getPaymentReceipt() {
+        return paymentReceipt;
     }
 
-    public void setInvoiceGrandTotal(Double invoiceGrandTotal) {
-        this.invoiceGrandTotal = invoiceGrandTotal;
-    }
-
-    public String getInvoiceStatus() {
-        return invoiceStatus;
-    }
-
-    public void setInvoiceStatus(String invoiceStatus) {
-        this.invoiceStatus = invoiceStatus;
+    public void setPaymentReceipt(EntityPaymentReceipt paymentReceipt) {
+        this.paymentReceipt = paymentReceipt;
     }
 
 }

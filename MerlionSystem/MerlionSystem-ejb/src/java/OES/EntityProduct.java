@@ -6,16 +6,18 @@
 
 package OES;
 
-import WMS.EntitySupplier;
+import CommonInfrastructure.EntityCompany;
+import MRPII.EntityBOM;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -25,27 +27,22 @@ import javax.persistence.ManyToMany;
 public class EntityProduct implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long productID;
-    private String productName;
-    private String productType;
-    private Integer productUnitToQuantity;
-    private Double productUnitToWeight;
     @ManyToMany(cascade={CascadeType.ALL}, mappedBy="Product")
-    private Set<EntitySupplier> supplier = new HashSet<>();
-
-    //private Double productPrice;
+    private Set<EntityCompany> company = new HashSet<>();
+    @OneToOne(mappedBy="product")
+    private EntityLineItem lineItem;
+    @ManyToOne
+    private EntityProductCatalog productCatalog;
+    @OneToOne(mappedBy="product")
+    private EntityBOM bom;
+    @OneToMany(mappedBy="product")
+    private Set<EntityInventory> inventory= new HashSet<>();
+    
     public EntityProduct() {
         this.setProductID(System.nanoTime());
     }
 
-    public void createProduct(String productName, String productType, Integer productUnitToQuantity, Double productUnitToWeight) {
-        this.productName = productName;
-        this.productType = productType;
-        this.productUnitToQuantity = productUnitToQuantity;
-        this.productUnitToWeight = productUnitToWeight;
-    }
-    
     public Long getProductID() {
         return productID;
     }
@@ -54,44 +51,44 @@ public class EntityProduct implements Serializable {
         this.productID = productID;
     }
 
-    public String getProductName() {
-        return productName;
+    public Set<EntityCompany> getCompany() {
+        return company;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setCompany(Set<EntityCompany> company) {
+        this.company = company;
     }
 
-    public String getProductType() {
-        return productType;
+    public EntityLineItem getLineItem() {
+        return lineItem;
     }
 
-    public void setProductType(String productType) {
-        this.productType = productType;
+    public void setLineItem(EntityLineItem lineItem) {
+        this.lineItem = lineItem;
     }
 
-    public Integer getProductUnitToQuantity() {
-        return productUnitToQuantity;
+    public EntityProductCatalog getProductCatalog() {
+        return productCatalog;
     }
 
-    public void setProductUnitToQuantity(Integer productUnitToQuantity) {
-        this.productUnitToQuantity = productUnitToQuantity;
+    public void setProductCatalog(EntityProductCatalog productCatalog) {
+        this.productCatalog = productCatalog;
     }
 
-    public Double getProductUnitToWeight() {
-        return productUnitToWeight;
+    public EntityBOM getBom() {
+        return bom;
     }
 
-    public void setProductUnitToWeight(Double productUnitToWeight) {
-        this.productUnitToWeight = productUnitToWeight;
+    public void setBom(EntityBOM bom) {
+        this.bom = bom;
     }
 
-    public Set<EntitySupplier> getSupplier() {
-        return supplier;
+    public Set<EntityInventory> getInventory() {
+        return inventory;
     }
 
-    public void setSupplier(Set<EntitySupplier> supplier) {
-        this.supplier = supplier;
+    public void setInventory(Set<EntityInventory> inventory) {
+        this.inventory = inventory;
     }
     
 }

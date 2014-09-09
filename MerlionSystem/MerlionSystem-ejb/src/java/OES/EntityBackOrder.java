@@ -6,10 +6,16 @@
 
 package OES;
 
+import CommonInfrastructure.EntityCompany;
+import MRPII.EntityOperationPlan;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 /**
@@ -21,24 +27,15 @@ public class EntityBackOrder implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     private Long backOrderID;    
-    private Long backOrderProductID;
-    private Integer backOrderQuantity;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date backOrderIssueDate;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date backOrderRequestedDeliveryDate;
-    private String backOrderStatus;
+    @OneToMany (mappedBy="backOrder")
+    private Set<EntityLineItem> lineItem = new HashSet<>();
+    @ManyToOne
+    private EntityOperationPlan operationPlan;
+    @ManyToOne
+    private EntityCompany company;
 
     public EntityBackOrder() {
         this.setBackOrderID(System.nanoTime());
-    }
-
-    public void createBackOrder(Long backOrderProductID, Integer backOrderQuantity, Date backOrderIssueDate, Date backOrderRequestedDeliveryDate, String backOrderStatus) {
-        this.backOrderProductID = backOrderProductID;
-        this.backOrderQuantity = backOrderQuantity;
-        this.backOrderIssueDate = backOrderIssueDate;
-        this.backOrderRequestedDeliveryDate = backOrderRequestedDeliveryDate;
-        this.backOrderStatus = backOrderStatus;
     }
 
     public Long getBackOrderID() {
@@ -49,44 +46,28 @@ public class EntityBackOrder implements Serializable {
         this.backOrderID = backOrderID;
     }
 
-    public Long getBackOrderProductID() {
-        return backOrderProductID;
+    public Set<EntityLineItem> getLineItem() {
+        return lineItem;
     }
 
-    public void setBackOrderProductID(Long backOrderProductID) {
-        this.backOrderProductID = backOrderProductID;
+    public void setLineItem(Set<EntityLineItem> lineItem) {
+        this.lineItem = lineItem;
     }
 
-    public Integer getBackOrderQuantity() {
-        return backOrderQuantity;
+    public EntityOperationPlan getOperationPlan() {
+        return operationPlan;
     }
 
-    public void setBackOrderQuantity(Integer backOrderQuantity) {
-        this.backOrderQuantity = backOrderQuantity;
+    public void setOperationPlan(EntityOperationPlan operationPlan) {
+        this.operationPlan = operationPlan;
     }
 
-    public Date getBackOrderIssueDate() {
-        return backOrderIssueDate;
+    public EntityCompany getCompany() {
+        return company;
     }
 
-    public void setBackOrderIssueDate(Date backOrderIssueDate) {
-        this.backOrderIssueDate = backOrderIssueDate;
-    }
-
-    public Date getBackOrderRequestedDeliveryDate() {
-        return backOrderRequestedDeliveryDate;
-    }
-
-    public void setBackOrderRequestedDeliveryDate(Date backOrderRequestedDeliveryDate) {
-        this.backOrderRequestedDeliveryDate = backOrderRequestedDeliveryDate;
-    }
-
-    public String getBackOrderStatus() {
-        return backOrderStatus;
-    }
-
-    public void setBackOrderStatus(String backOrderStatus) {
-        this.backOrderStatus = backOrderStatus;
+    public void setCompany(EntityCompany company) {
+        this.company = company;
     }
     
 }

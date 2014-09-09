@@ -6,9 +6,7 @@
 
 package OES;
 
-import TMS.EntityTransportationOrder;
 import WMS.EntityInventoryItem;
-import WMS.EntityWarehouseOrder;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,9 +25,6 @@ public class EntityOrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     private Long orderItemID;
-    private Long orderItemInventoryID;
-    private Integer orderItemQuantity;
-    private Double orderItemPrice;
     @OneToOne
     private EntityTransportationOrder transportationOrder;
     @OneToOne
@@ -44,42 +39,12 @@ public class EntityOrderItem implements Serializable {
         this.setOrderItemID(System.nanoTime());
     }
 
-    public void createOrderItem(Long orderItemInventoryID, Integer orderItemQuantity, Double orderItemPrice) {
-        this.orderItemInventoryID = orderItemInventoryID;
-        this.orderItemQuantity = orderItemQuantity;
-        this.orderItemPrice = orderItemPrice;
-    }
-
     public Long getOrderItemID() {
         return orderItemID;
     }
 
     public void setOrderItemID(Long orderItemID) {
         this.orderItemID = orderItemID;
-    }
-
-    public Long getOrderItemInventoryID() {
-        return orderItemInventoryID;
-    }
-
-    public void setOrderItemInventoryID(Long orderItemInventoryID) {
-        this.orderItemInventoryID = orderItemInventoryID;
-    }
-
-    public Integer getOrderItemQuantity() {
-        return orderItemQuantity;
-    }
-
-    public void setOrderItemQuantity(Integer orderItemQuantity) {
-        this.orderItemQuantity = orderItemQuantity;
-    }
-
-    public Double getOrderItemPrice() {
-        return orderItemPrice;
-    }
-
-    public void setOrderItemPrice(Double orderItemPrice) {
-        this.orderItemPrice = orderItemPrice;
     }
 
     public EntityTransportationOrder getTransportationOrder() {
@@ -104,6 +69,14 @@ public class EntityOrderItem implements Serializable {
 
     public void setProduct(EntityProduct product) {
         this.product = product;
+    }
+
+    public Set<EntityInventoryItem> getInventoryItem() {
+        return inventoryItem;
+    }
+
+    public void setInventoryItem(Set<EntityInventoryItem> inventoryItem) {
+        this.inventoryItem = inventoryItem;
     }
     
 }

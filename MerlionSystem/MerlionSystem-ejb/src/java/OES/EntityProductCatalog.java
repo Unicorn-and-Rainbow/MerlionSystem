@@ -6,12 +6,13 @@
 
 package OES;
 
-import GRNS.EntityServiceProvider;
+import CommonInfrastructure.EntityCompany;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -23,24 +24,13 @@ public class EntityProductCatalog implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     private Long productCatalogID;
-    private String productCatalogName;
-    private String productCatalogDescription;
-    private String productCatalogEffectiveDate;
-    private String productCatalogEndDate;
     @OneToMany
     private Set<EntityProduct> product = new HashSet<>();
-    @OneToMany
-    private Set<EntityServiceProvider> serviceProvider = new HashSet<>();
-
+    @ManyToOne
+    private EntityCompany company;
+    
     public EntityProductCatalog() {
         this.setProductCatalogID(System.nanoTime());
-    }
-
-    public void createProductCatalog(String productCatalogName, String productCatalogDescription, String productCatalogEffectiveDate, String productCatalogEndDate) {
-        this.productCatalogName = productCatalogName;
-        this.productCatalogDescription = productCatalogDescription;
-        this.productCatalogEffectiveDate = productCatalogEffectiveDate;
-        this.productCatalogEndDate = productCatalogEndDate;
     }
 
     public Long getProductCatalogID() {
@@ -51,38 +41,6 @@ public class EntityProductCatalog implements Serializable {
         this.productCatalogID = productCatalogID;
     }
 
-    public String getProductCatalogName() {
-        return productCatalogName;
-    }
-
-    public void setProductCatalogName(String productCatalogName) {
-        this.productCatalogName = productCatalogName;
-    }
-
-    public String getProductCatalogDescription() {
-        return productCatalogDescription;
-    }
-
-    public void setProductCatalogDescription(String productCatalogDescription) {
-        this.productCatalogDescription = productCatalogDescription;
-    }
-
-    public String getProductCatalogEffectiveDate() {
-        return productCatalogEffectiveDate;
-    }
-
-    public void setProductCatalogEffectiveDate(String productCatalogEffectiveDate) {
-        this.productCatalogEffectiveDate = productCatalogEffectiveDate;
-    }
-
-    public String getProductCatalogEndDate() {
-        return productCatalogEndDate;
-    }
-
-    public void setProductCatalogEndDate(String productCatalogEndDate) {
-        this.productCatalogEndDate = productCatalogEndDate;
-    }
-
     public Set<EntityProduct> getProduct() {
         return product;
     }
@@ -91,12 +49,12 @@ public class EntityProductCatalog implements Serializable {
         this.product = product;
     }
 
-    public Set<EntityServiceProvider> getServiceProvider() {
-        return serviceProvider;
+    public EntityCompany getCompany() {
+        return company;
     }
 
-    public void setServiceProvider(Set<EntityServiceProvider> serviceProvider) {
-        this.serviceProvider = serviceProvider;
+    public void setCompany(EntityCompany company) {
+        this.company = company;
     }
-    
+
 }
